@@ -18,8 +18,6 @@ function Steps() {
   const [step, setStep] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
 
-  // const [test, setTest] = useState({ name: "Jonas" });
-
   function handlePrevious() {
     if (step > 1) setStep((s) => s - 1);
   }
@@ -27,12 +25,7 @@ function Steps() {
   function handleNext() {
     if (step < 3) {
       setStep((s) => s + 1);
-      // setStep((s) => s + 1);
     }
-
-    // BAD PRACTICE
-    // test.name = "Fred";
-    // setTest({ name: "Fred" });
   }
 
   return (
@@ -48,12 +41,7 @@ function Steps() {
             <div className={step >= 2 ? "active" : ""}>2</div>
             <div className={step >= 3 ? "active" : ""}>3</div>
           </div>
-
-          <p className="message">
-            Step {step}: {messages[step - 1]}
-            {/* {test.name} */}
-          </p>
-
+          <StepMessage step={step}></StepMessage>
           <div className="buttons">
             <Button
               bgColor="#7950f2"
@@ -73,6 +61,13 @@ function Steps() {
         </div>
       )}
     </div>
+  );
+}
+function StepMessage({ step }) {
+  return (
+    <p className="message">
+      Step {step}: {messages[step - 1]}
+    </p>
   );
 }
 function Button({ color, bgColor, onHandlePervious, children }) {
